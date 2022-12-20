@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "jetpack-compose-navigation"
+rootProject.name = "jetpack-compose-com.example.jetpack_compose_navigation.com.example.jetpack_compose_navigation.com.example.jetpack_compose_navigation.navigation"
 include ':app'

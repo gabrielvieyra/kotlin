@@ -6,10 +6,11 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.jetpack_compose_navigation.navegacion.AppNavigation
+import com.example.jetpack_compose_navigation.screens.FirstScreen
 import com.example.jetpack_compose_navigation.ui.theme.JetpackcomposenavigationTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,22 +23,18 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    AppNavigation();
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     JetpackcomposenavigationTheme {
-        Greeting("Android")
+        // Es el componente que se encarga de manejar la navegacion
+        AppNavigation();
     }
 }
