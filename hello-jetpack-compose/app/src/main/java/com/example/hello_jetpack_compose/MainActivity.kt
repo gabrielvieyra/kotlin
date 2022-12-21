@@ -3,9 +3,12 @@ package com.example.hello_jetpack_compose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Button
 import androidx.compose.material.Text
+import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
@@ -16,17 +19,47 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.hello_jetpack_compose.main.BookViewModel
+import com.example.hello_jetpack_compose.main.MainScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val bookViewModel by viewModels<BookViewModel>()
         /* setContent, este bloque de codigo es nuestra activity, todo lo que coloquemos aca adentro se va a pintar en la pantalla de nuestra app */
         setContent {
-            PreviewComponent();
+            // PreviewComponent()
+            // TextField()
+            MainScreen(bookViewModel)
         }
     }
 
-    @Preview(showSystemUi = true)
+    @Composable
+    fun TextField() {
+        var name by remember {
+            mutableStateOf(value = "")
+        }
+        var currentName by remember {
+            mutableStateOf(value = "Pedro")
+        }
+
+        Column {
+            Text(text = currentName)
+            // onValueChange, cada vez que tipeo una tecla se va a ejecutar este metodo
+            TextField(value = name, onValueChange = {
+                name = it
+            })
+            Button(onClick = {
+                if (name.isNotBlank()) {
+                    currentName = name
+                }
+            }) {
+                Text(text = "Click me")
+            }
+        }
+    }
+
+    //@Preview(showSystemUi = true)
     @Composable
     fun PreviewComponent() {
         val scrollState = rememberScrollState();
