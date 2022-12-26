@@ -1,20 +1,21 @@
 package com.example.login_jetpack_compose.view
 
 import android.content.ContentValues.TAG
-import android.nfc.Tag
 import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(loginViewModel: LoginViewModel) {
+    val state = loginViewModel.state
     Scaffold(
         topBar = {
             TopAppBar(
@@ -37,28 +38,41 @@ fun LoginScreen() {
                 )
             Spacer(Modifier.height(32.dp))
             TextField(
-                value = "",
+                // value es el valor que se va a mostrar en el texField
+                // onValueChange, cada vez que tipeo una tecla se va a ejecutar este metodo
+                value = state.userField,
                 modifier = Modifier.fillMaxWidth(),
                 label = {
                     Text(text = "Usuario")
                 },
-                onValueChange = {}
+                onValueChange = {
+                    loginViewModel.handleUserFieldValue(it);
+                },
+                singleLine = true
             )
             Spacer(Modifier.height(24.dp))
             TextField(
-                value = "",
+                value = state.passwordField,
                 modifier = Modifier.fillMaxWidth(),
                 label = {
                     Text(text = "Clave de identificacion")
                 },
-                onValueChange = {}
+                onValueChange = {
+                    loginViewModel.handlePasswordFieldValue(it)
+                },
+                singleLine = true,
+                visualTransformation = PasswordVisualTransformation()
             )
 
             Spacer(Modifier.height(24.dp))
             Button(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = {
-                    Log.d(TAG, "El boton fue apretado")
+                    if (state.userField.isNotBlank() && state.passwordField.isNotBlank()) {
+                        Log.d(TAG, "Formulario valido")
+                    } else {
+                        Log.d(TAG, "Formulario invalido")
+                    }
                 }
             ) {
                 Text(text = "Ingresar")
@@ -86,11 +100,11 @@ fun LoginScreen() {
     }
 }
 
-@Preview
+/*@Preview
 @Composable
 fun Preview() {
     LoginScreen()
-}
+}*/
 
 
 
