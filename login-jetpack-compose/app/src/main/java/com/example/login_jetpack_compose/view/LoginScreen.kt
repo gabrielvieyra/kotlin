@@ -12,11 +12,15 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.launch
 
 @Composable
 fun LoginScreen(loginViewModel: LoginViewModel) {
     val state = loginViewModel.state
+    val scaffoldState = rememberScaffoldState()
+    val scope = rememberCoroutineScope()
     Scaffold(
+        scaffoldState = scaffoldState,
         topBar = {
             TopAppBar(
                 title = {
@@ -70,8 +74,14 @@ fun LoginScreen(loginViewModel: LoginViewModel) {
                 onClick = {
                     if (state.userField.isNotBlank() && state.passwordField.isNotBlank()) {
                         Log.d(TAG, "Formulario valido")
+                        scope.launch {
+                            scaffoldState.snackbarHostState.showSnackbar("Formulario valido")
+                        }
                     } else {
                         Log.d(TAG, "Formulario invalido")
+                        scope.launch {
+                            scaffoldState.snackbarHostState.showSnackbar("Formulario invalido")
+                        }
                     }
                 }
             ) {
