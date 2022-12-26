@@ -14,7 +14,8 @@ fun AppNavigation() {
     // El navHost va a conocer las pantallas y como navegar entre ellas
     // A startDestination le pasamos la ruta de inicio
     NavHost(navController = navController, startDestination = AppScreens.FirstScreen.route) {
-           composable(route = AppScreens.FirstScreen.route) {
+        // Aca vamos a definir las rutas
+        composable(route = AppScreens.FirstScreen.route) {
                FirstScreen(navController)
            }
         composable(route = AppScreens.SecondScreen.route) {

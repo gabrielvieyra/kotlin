@@ -1,4 +1,4 @@
-package com.example.login_jetpack_compose.view
+package com.example.login_jetpack_compose.screens
 
 data class LoginState(
     val userField: String = "",
