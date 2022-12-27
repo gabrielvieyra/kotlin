@@ -84,6 +84,8 @@ fun LoginScreen(loginViewModel: LoginViewModel, navController: NavController) {
                                 }
                                 SnackbarResult.Dismissed -> {
                                     Log.d(TAG, "Snackbar Ignorado")
+                                    loginViewModel.handleUserFieldValue("")
+                                    loginViewModel.handlePasswordFieldValue("")
                                     navController.navigate(route = "dashboard")
                                 }
                             }
