@@ -32,7 +32,8 @@ fun DashboardScreen(navController: NavController) {
             }
         }
     ) {
-        Text(text = "Bienvenido Gabriel Vieyra")
+        //Text(text = "Bienvenido Gabriel Vieyra")
+        Animations()
     }
 }
 
@@ -134,12 +135,12 @@ fun Animations() {
 }
 
 // showSystemUi con un valor true te muestra como si estuvieses en un celu sin la nesecidad del emulador
-@Preview(showSystemUi = true)
+/*@Preview(showSystemUi = true)
 @Composable
 fun Preview() {
-    //DashboardScreen(navController)
-    Animations()
-}
+    DashboardScreen()
+    //Animations()
+}*/
 
 
 

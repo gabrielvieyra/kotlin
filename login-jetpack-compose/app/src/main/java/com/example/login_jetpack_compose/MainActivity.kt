@@ -22,8 +22,8 @@ class MainActivity : ComponentActivity() {
             val navController = rememberNavController()
             NavHost(navController = navController, startDestination = "login") {
                 composable(route = "login") {
-                    //LoginScreen(loginViewModel, navController);
-                    Animations();
+                    LoginScreen(loginViewModel, navController);
+                    //Animations();
                 }
                 composable(route = "dashboard") {
                     DashboardScreen(navController);
