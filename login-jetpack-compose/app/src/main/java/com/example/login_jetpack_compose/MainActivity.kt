@@ -1,12 +1,14 @@
 package com.example.login_jetpack_compose
 
 import android.os.Bundle
+import android.view.animation.Animation
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.login_jetpack_compose.screens.Animations
 import com.example.login_jetpack_compose.screens.DashboardScreen
 import com.example.login_jetpack_compose.screens.LoginScreen
 import com.example.login_jetpack_compose.screens.LoginViewModel
@@ -20,7 +22,8 @@ class MainActivity : ComponentActivity() {
             val navController = rememberNavController()
             NavHost(navController = navController, startDestination = "login") {
                 composable(route = "login") {
-                    LoginScreen(loginViewModel, navController);
+                    //LoginScreen(loginViewModel, navController);
+                    Animations();
                 }
                 composable(route = "dashboard") {
                     DashboardScreen(navController);

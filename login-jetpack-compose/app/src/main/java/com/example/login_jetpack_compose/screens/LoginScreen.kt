@@ -3,11 +3,13 @@ package com.example.login_jetpack_compose.screens
 import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -19,6 +21,18 @@ fun LoginScreen(loginViewModel: LoginViewModel, navController: NavController) {
     val state = loginViewModel.state
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
+
+    // Si la key cambia se ejecuta lo que esta adentro de este LaunchedEffect
+    LaunchedEffect(key1 = "test01", key2 = "test02") {
+        // Cuerpo del LaunchedEffect
+    }
+
+    // Podemos tener varios LaunchedEffect
+    // Ejemplo para ejecutar el LaunchedEffect sola la primera vez que carga la pantalla
+    LaunchedEffect(key1 = true) {
+        Log.d(TAG, "LaunchedEffect")
+    }
+
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = {
@@ -46,6 +60,7 @@ fun LoginScreen(loginViewModel: LoginViewModel, navController: NavController) {
                 // onValueChange, cada vez que tipeo una tecla se va a ejecutar este metodo
                 value = state.userField,
                 modifier = Modifier.fillMaxWidth(),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
                 label = {
                     Text(text = "Usuario")
                 },
@@ -65,6 +80,7 @@ fun LoginScreen(loginViewModel: LoginViewModel, navController: NavController) {
                     loginViewModel.handlePasswordFieldValue(it)
                 },
                 singleLine = true,
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                 visualTransformation = PasswordVisualTransformation()
             )
 
